@@ -1,8 +1,8 @@
 package com.example.meetingefficiencytracker.model
 
-data class Meeting(
+data class MeetingData(
     val title: String,
     val duration: String,
     val participants: Int,
-    val isEfficient: Boolean
+    val image: Int
 )

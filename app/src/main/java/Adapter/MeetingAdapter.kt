@@ -35,14 +35,14 @@ class MeetingAdapter(private val list: List<Meeting>) : RecyclerView.Adapter<Mee
         holder.tvParticipants.text = "Peserta: ${data.participants}"
 
         // Pasang Gambar dari folder drawable
-        holder.imgMeeting.setImageResource(R.drawable.meeting)
-        holder.imgTimer.setImageResource(R.drawable.timer)
-        holder.imgGroup.setImageResource(R.drawable.group)
-        holder.imgIde.setImageResource(R.drawable.idea)
+        holder.imgMeeting.setImageResource(R.drawable.meeting1)
+        holder.imgTimer.setImageResource(R.drawable.meeting3)
+        holder.imgGroup.setImageResource(R.drawable.meeting4)
+        holder.imgIde.setImageResource(R.drawable.meeting5)
 
         // Logika lampu ide (hanya muncul jika isEfficient = true)
         if (data.isEfficient) {
-            holder.imgIde.setImageResource(R.drawable.idea)
+            holder.imgIde.setImageResource(R.drawable.meeting5)
             holder.imgIde.visibility = View.VISIBLE
         } else {
             holder.imgIde.visibility = View.GONE
