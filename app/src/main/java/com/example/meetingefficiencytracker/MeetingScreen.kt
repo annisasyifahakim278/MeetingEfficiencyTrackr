@@ -1,8 +1,7 @@
 package com.example.meetingefficiencytracker
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,59 +12,50 @@ import com.example.meetingefficiencytracker.model.MeetingData
 @Composable
 fun MeetingScreen() {
 
-    val meetingList = listOf(
-
-        MeetingData(
-            "Daily Standup",
-            "15 Menit",
-            5,
-            R.drawable.meeting1
-        ),
-
-        MeetingData(
-            "Sprint Review",
-            "60 Menit",
-            10,
-            R.drawable.meeting2
-        ),
-
-        MeetingData(
-            "Strategy Planning",
-            "90 Menit",
-            8,
-            R.drawable.meeting3
-        ),
-
-        MeetingData(
-            "Client Pitch",
-            "45 Menit",
-            6,
-            R.drawable.meeting4
-        ),
-
-        MeetingData(
-            "Budget Discussion",
-            "120 Menit",
-            4,
-            R.drawable.meeting5
-        )
+    val popularList = listOf(
+        MeetingData("Daily Standup", "Durasi 15 menit", "5 peserta", R.drawable.meeting1),
+        MeetingData("Sprint Review", "Durasi 60 menit", "10 peserta", R.drawable.meeting2),
+        MeetingData("Client Meeting", "Durasi 45 menit", "4 peserta", R.drawable.meeting3)
     )
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-    ) {
+    val meetingList = listOf(
+        MeetingData("Daily Standup", "Durasi 15 menit", "5 peserta", R.drawable.meeting1),
+        MeetingData("Sprint Review", "Durasi 60 menit", "10 peserta", R.drawable.meeting2),
+        MeetingData("Strategy Planning", "Durasi 90 menit", "8 peserta", R.drawable.meeting3),
+        MeetingData("Client Pitch", "Durasi 45 menit", "4 peserta", R.drawable.meeting4),
+        MeetingData("Budget Meeting", "Durasi 120 menit", "6 peserta", R.drawable.meeting5)
+    )
 
-        Text(
-            text = "Meeting Efficiency Tracker",
-            fontSize = 24.sp,
-            modifier = Modifier.padding(16.dp)
-        )
+    LazyColumn {
 
-        meetingList.forEach { meeting ->
-            MeetingItem(meeting)
+        item {
+            Text(
+                text = "Meeting Populer",
+                fontSize = 20.sp,
+                modifier = Modifier.padding(16.dp)
+            )
         }
 
+        item {
+            LazyRow(
+                modifier = Modifier.padding(start = 16.dp)
+            ) {
+                items(popularList) { item ->
+                    PopularItem(item)
+                }
+            }
+        }
+
+        item {
+            Text(
+                text = "Daftar Meeting",
+                fontSize = 20.sp,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
+
+        items(meetingList) { item ->
+            MeetingItem(item)
+        }
     }
 }
